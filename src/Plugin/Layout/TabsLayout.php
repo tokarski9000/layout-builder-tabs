@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @Layout(
  *   id = "tabs_layout_builder",
- *   deriver = "Drupal\d_layout_builder_tabs\Plugin\Deriver\TabsLayoutDeriver"
+ *   deriver = "Drupal\layout_builder_tabs\Plugin\Deriver\TabsLayoutDeriver"
  * )
  */
 class TabsLayout extends LayoutDefault implements ContainerFactoryPluginInterface {

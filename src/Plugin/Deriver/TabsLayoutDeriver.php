@@ -7,7 +7,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Layout\LayoutDefinition;
 use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\d_layout_builder_tabs\Plugin\Layout\TabsLayout;
+use Drupal\layout_builder_tabs\Plugin\Layout\TabsLayout;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
