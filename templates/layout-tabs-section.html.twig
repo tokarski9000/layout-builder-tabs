@@ -1,0 +1,75 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a layout tabs section.
+ *
+ * Available variables:
+ * - content: The content for this layout.
+ * - attributes: HTML attributes for the layout <div>.
+ * - settings: An array of settings for the layout.
+ *
+ * @ingroup themeable
+ */
+#}
+{% if content %}
+  {% set base_class = 'layout-tabs' %}
+  {% set classes = [
+    base_class,
+    'layout',
+    'layout-builder__layout'
+  ] %}
+  {% set nav_tabs_classes ='nav nav-tabs mx-auto' %}
+  <div {{ attributes.addClass(classes) }}>
+    {{ title_prefix }}
+    {% set container = settings['use_container'] ? 'container' : '' %}
+    {% set overlap_previous_section = settings['overlap_previous_section'] ? base_class ~ '--overlap' : '' %}
+    <div class="{{ base_class ~ '--nav' }} {{ container }} {{ overlap_previous_section }} position-relative">
+      <ul class="{{ nav_tabs_classes }}" role="tablist">
+        {% for i in 1..12 %}
+          {% set tab_id = "tab_region_" ~ i %}
+          {% if content[tab_id] %}
+            {% set active = i == 1 ? 'active' : '' %}
+            <li class="nav-item" role="presentation">
+              <button id="{{ content[tab_id]['#attributes']['id'] ~ '-nav' }}"
+                      class="nav-link {{ active }}"
+                      data-bs-toggle="tab"
+                      data-bs-target="#{{ content[tab_id]['#attributes']['id'] }}"
+                      type="button" role="tab"
+                      aria-controls="{{ content[tab_id]['#attributes']['id'] }}"
+                      aria-selected="true"
+                      style="
+                          --layout-tabs-active-background-color: {{ settings['tabs'][i]['active_background_color']}};
+                          --layout-tabs-active-font-color: {{ settings['tabs'][i]['active_font_color']}};
+                          --layout-tabs-inactive-background-color: {{ settings['tabs'][i]['inactive_background_color']}};
+                          --layout-tabs-inactive-font-color: {{ settings['tabs'][i]['inactive_font_color']}};"
+              >
+                <div class="{{ base_class ~ '--button-content' }} d-flex justify-content-center align-items-center">
+                  <span class="{{ base_class ~ '--button-content--title' }}">{{ settings['tabs'][i]['tab_title'] }}</span>
+                  <span class="{{ base_class ~ '--button-content--icon' }} ms-1">{{ content[tab_id].icon }}</span>
+                </div>
+
+              </button>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="tab-content">
+      {% for i in 1..12 %}
+        {% set active = i == 1 ? 'active' : '' %}
+        {% set show = i == 1 ? 'show' : 'fade' %}
+        {% set region = "tab_region_" ~ i %}
+        {% set container = settings['tabs'][i]['use_container'] ? 'container' : '' %}
+        {% if content[region] %}
+          <div {{ region_attributes[region].addClass(['tab-pane', show, container, active])
+            .setAttribute('id', content[region]['#attributes']['id'])
+          }}
+          >
+            {{ content[region]|without('icon') }}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {{ title_suffix }}
+  </div>
+{% endif %}

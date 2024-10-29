@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @file
+ * Hooks for layout_builder_tabs.
+ */
+
+declare(strict_types=1);
+
+/**
+ * Implements hook_theme().
+ */
+function layout_builder_tabs_theme() {
+  return [
+    'layout_tabs_container_wrapper' => [
+      'variables' => [
+        'attributes' => [],
+        'children' => [],
+      ],
+    ],
+    'layout_tabs_container' => [
+      'variables' => [
+        'attributes' => [],
+        'children' => [],
+      ],
+    ],
+    'layout_tabs_section' => [
+      'template' => 'layout-tabs-section',
+      'render element' => 'content',
+      'base hook' => 'layout',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function layout_builder_tabs_theme_suggestions_alter(array &$suggestions, array $variables) {
+  if ($variables['theme_hook_original'] === 'layout_tabs_section') {
+    $suggestions[] = 'layout_tabs_section__elements';
+  }
+}

@@ -1,0 +1,7 @@
+name: Layout Builder Tabs
+type: module
+description: 'Provides a tabbed layout for the Layout Builder.'
+core_version_requirement: ^10 || ^11
+package: custom
+dependencies:
+  - bootstrap_layout_builder:bootstrap_layout_builder

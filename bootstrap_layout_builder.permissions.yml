@@ -1,0 +1,4 @@
+configure bootstrap layout tabs:
+  title: 'Configure Tabs Layout Builder'
+  description: 'Allows access to configuration for Tabs Layout Builder.'
+  restrict access: true

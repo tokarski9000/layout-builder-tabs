@@ -1,0 +1,4 @@
+# Bootstrap Layout Builder base styles.
+layout_tabs_script:
+  js:
+    js/layout-tabs-script.js: { }
